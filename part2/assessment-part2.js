@@ -42,11 +42,25 @@ function noWeakLink() {
   return $http({
     method: 'GET',
     url: '/api/users'
-  })
-  // CODE HERE...
+   }).then(function(response){
+      for (var i in this.response){
+        if(this.response[i].data.id == 1){
+         return firstUser = this.response[i];
+        }
+      }
+    return firstUser;
+   }).then(function(response){
 
-}
-
+      for(var i in this.response){
+        if(this.response[i].data.id == 10){
+         return thirdUser = this.response[i];
+        }
+      }
+      
+   });
+  
+  }
+ 
 
 
 // *************
@@ -74,6 +88,7 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
+var boundToElephant = large.bind(this.elephant);
 
 
 
@@ -87,7 +102,12 @@ function large() {
 // Use explicit binding to give capacity the context of crew
 // and return the bound function.
 
-// CODE HERE...
+// function deathstar(crew, capacity){
+
+//       return capacity.bind(crew)
+// }
+
+
 
 
 
@@ -102,7 +122,14 @@ function large() {
 // The closure function will take in a parameter: liabilities (Number)
 // The closure function will return the combined value of assets and liabilities.
 
-// CODE HERE...
+function accountingOffice(assets){
+  
+  
+  return function(liabilities){
+      return assets + liabilities;
+  }
+  
+}// CODE HERE...
 
 
 
@@ -127,7 +154,20 @@ function large() {
 //     remember: << array of items to be remembered >>
 // };
 
-// CODE HERE...
+function forgetter(name){
+  var newArr = [];
+  var list = []
+  rememberall = function(item){
+    newArr.push(item)
+        return {
+          name: name,
+          remember: newArr
+        }
+  }
+  
+  return rememberall;
+  
+}// CODE HERE...
 
 
 
@@ -155,4 +195,28 @@ function large() {
 
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
+// function frodo(startingHungerValue, startingDangerValue){
+//   startingDangerValue = Number;
+//   startingHungerValue = Number;
+
+//       return {
+//         dinnerOverFire = function() {
+//           hunger: (startingHungerValue -= 25);
+//         },
+//         hidingInBush = function() {
+//           hunger: (startingHungerValue -= 20);
+//           danger: (startingDangerValue += 35);
+          
+
+//         }
+//       }
+
+
+// }
+
+
+  
+  
+  
+  
 // CODE HERE...
